@@ -1,0 +1,26 @@
+lass Solution {
+    public int[] twoSum(int[] nums, int target) {
+        int n=0,m=0;
+        Boolean flag=false;
+        int[] arr=new int[2];
+        for(int i=0;i<nums.length-1;i++)
+        {
+            for(int j=i+1;j<nums.length;j++)
+            {
+                if((nums[i]+nums[j])==target)
+                {
+                    n=i;
+                    m=j;
+                  flag=true;
+                  break;
+                }
+            }
+            if(flag){
+                break;
+            }
+        }
+        arr[0]=n;
+        arr[1]=m;
+        return arr;
+    }
+}
