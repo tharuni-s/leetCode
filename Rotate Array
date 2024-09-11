@@ -1,0 +1,70 @@
+class Solution {
+    public void rotate(int[] nums, int k) {
+        int n=nums.length;
+        k=(k>n)?k%n:k;
+        while(k>0){
+        int temp=nums[n-1];
+        for(int i=n-2;i>=0;i--){
+            nums[i+1]=nums[i];
+        }
+        nums[0]=temp;
+        k--;
+        }
+        System.out.print(Arrays.toString(nums));
+    }
+}
+
+===========================================================
+// to reduce time complexity
+class Solution {
+    public void rotate(int[] nums, int k) {
+        int n=nums.length;
+        k=k%n;
+        int[] temp = new int[n];
+        if(k!=0){
+            System.arraycopy(nums,n-k,temp,0,k);
+            System.arraycopy(nums,0,temp,k,n-k);
+            System.arraycopy(temp,0,nums,0,n);
+        }       
+        }
+}
+================================================
+
+class Solution:
+    def rotate(self, nums: List[int], k: int) -> None:
+        k = k % len(nums)
+        if k != 0:
+            nums[:k], nums[k:] = nums[-k:], nums[:-k]
+
+
+==================================================
+
+// another method
+
+[5,6,7,1,2,3,4]
+If k = 9, remainder is 2.
+
+[1,2,3,4,5,6,7]
+↓
+[6,7,1,2,3,4,5]
+We calculate rotated position with
+
+(current position + remainder) % length of input array
+For example, If k = 9, rotated position should be
+
+For 1(= index 0), (0 + 2) % 7 = 2
+For 2(= index 1), (1 + 2) % 7 = 3
+For 6(= index 5), (5 + 2) % 7 = 0
+For 7(= index 6), (6 + 2) % 7 = 1
+
+class Solution:
+    def rotate(self, nums: List[int], k: int) -> None:
+        n = len(nums)
+        k = k % n
+        rotated = [0] * n
+
+        for i in range(n):
+            rotated[(i + k) % n] = nums[i]
+        
+        for i in range(n):
+            nums[i] = rotated[i]
